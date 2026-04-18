@@ -57,7 +57,7 @@ public final class ConfigManager {
         TIMEOUT_PAGE_LOAD           = Integer.parseInt(required(props, "timeout.page.load"));
         TIMEOUT_MANUAL_INTERVENTION = Integer.parseInt(required(props, "timeout.manual.intervention"));
 
-        REPORT_ALLURE_RESULTS_DIR   = required(props, "report.allure.results.dir");
+        REPORT_ALLURE_RESULTS_DIR   = optional(props, "report.allure.results.dir", "allure-results");
         SCREENSHOT_ON_FAILURE       = Boolean.parseBoolean(required(props, "screenshot.on.failure"));
         SCREENSHOT_ON_EVERY_PAGE    = Boolean.parseBoolean(required(props, "screenshot.on.every.page"));
 
@@ -87,6 +87,14 @@ public final class ConfigManager {
         if (value == null || value.isBlank()) {
             throw new IllegalStateException(
                     "Missing required config key '" + key + "' in " + CONFIG_FILE);
+        }
+        return value.trim();
+    }
+
+    private static String optional(Properties props, String key, String defaultValue) {
+        String value = props.getProperty(key);
+        if (value == null || value.isBlank()) {
+            return defaultValue;
         }
         return value.trim();
     }

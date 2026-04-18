@@ -69,7 +69,7 @@ All runtime settings live in `src/test/resources/config.properties`:
 | `browser.type` | `chrome` | `chrome` / `firefox` / `edge` |
 | `browser.headless` | `false` | Set `true` for CI |
 | `timeout.explicit` | `15` | Seconds for explicit waits |
-| `report.allure.results.dir` | `target/allure-results` | Allure output |
+| `report.allure.results.dir` | `allure-results` (optional) | Documented default; Allure path is set by Maven (`pom.xml`) to `./allure-results` at project root |
 
 ## Logging
 

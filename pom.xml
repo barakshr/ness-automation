@@ -29,8 +29,11 @@
         <allure.maven.version>2.12.0</allure.maven.version>
         <compiler.plugin.version>3.13.0</compiler.plugin.version>
 
-        <!-- Allure -->
-        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+        <!-- Allure: project root so IDE runs and `mvn allure:serve` see the same folder as `mvn test` -->
+        <allure.results.directory>${project.basedir}/allure-results</allure.results.directory>
+
+        <!-- TestNG suite (absolute path so Surefire always finds it regardless of cwd) -->
+        <suite.xml.file>${project.basedir}/src/test/resources/testng.xml</suite.xml.file>
     </properties>
 
     <dependencies>
@@ -95,7 +98,7 @@
                 <version>${surefire.version}</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                        <suiteXmlFile>${suite.xml.file}</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
@@ -105,6 +108,12 @@
                     </systemPropertyVariables>
                 </configuration>
                 <dependencies>
+                    <!-- Explicit TestNG provider (avoids Surefire not picking up TestNG in some setups / IDEs) -->
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-testng</artifactId>
+                        <version>${surefire.version}</version>
+                    </dependency>
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjweaver</artifactId>
