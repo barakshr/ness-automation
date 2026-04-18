@@ -31,6 +31,7 @@ public class ShoppingFlowTest extends BaseTest {
         new HomePage()
                 .open()
                 .goToSearch();
+                throw new RuntimeException("test");
     }
 
     // @Test

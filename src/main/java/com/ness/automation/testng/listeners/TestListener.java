@@ -1,13 +1,13 @@
 package com.ness.automation.testng.listeners;
 
-import com.ness.automation.core.config.ConfigManager;
-import com.ness.automation.core.driver.DriverManager;
-import com.ness.automation.utils.AllureAttachments;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+/**
+ * Test lifecycle logging. Driver and Allure screenshots are handled by {@link DriverLifecycleListener}.
+ */
 public class TestListener implements ITestListener {
 
     private static final Logger log = LogManager.getLogger(TestListener.class);
@@ -20,21 +20,11 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         log.info("✔ Passed: {}", result.getName());
-        if (ConfigManager.SCREENSHOT_ON_EVERY_PAGE) {
-            AllureAttachments.screenshot(DriverManager.getDriver(), "final-state");
-        }
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         log.error("✘ Failed: {}", result.getName());
-        if (ConfigManager.SCREENSHOT_ON_FAILURE) {
-            try {
-                AllureAttachments.screenshot(DriverManager.getDriver(), "failure-screenshot");
-            } catch (Exception e) {
-                log.warn("Could not capture failure screenshot: {}", e.getMessage());
-            }
-        }
     }
 
     @Override

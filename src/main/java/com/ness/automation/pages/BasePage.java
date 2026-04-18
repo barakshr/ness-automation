@@ -2,7 +2,6 @@ package com.ness.automation.pages;
 
 import com.ness.automation.core.config.ConfigManager;
 import com.ness.automation.core.driver.DriverManager;
-import com.ness.automation.utils.AllureAttachments;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -56,15 +55,5 @@ public abstract class BasePage {
 
     protected boolean isPresent(By locator) {
         return !driver.findElements(locator).isEmpty();
-    }
-
-    /**
-     * When {@code screenshot.on.every.page} is true, attaches the current viewport to Allure.
-     * Call after each meaningful navigation (e.g. after {@code driver.get(...)}).
-     */
-    protected void attachScreenshotIfEveryPageEnabled(String attachmentName) {
-        if (ConfigManager.SCREENSHOT_ON_EVERY_PAGE) {
-            AllureAttachments.screenshot(driver, attachmentName);
-        }
     }
 }
