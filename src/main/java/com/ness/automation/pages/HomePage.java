@@ -12,6 +12,7 @@ public class HomePage extends BasePage {
     public HomePage open() {
         log.info("Opening {}", ConfigManager.AUT_BASE_URL);
         driver.get(ConfigManager.AUT_BASE_URL);
+        attachScreenshotIfEveryPageEnabled("Page: Amazon home");
         return this;
     }
 

@@ -33,12 +33,19 @@ public class ShoppingFlowTest extends BaseTest {
                 .goToSearch();
     }
 
-    @Test
-    @Description("Open home page and navigate to search")
-    // public void shouldNotExceedBudget(TestScenario scenario)
-    public void shouldNotExceedBudget2() {
-        new HomePage()
-                .open()
-                .goToSearch();
-    }
+    // @Test
+    // @Description("Open home page and navigate to search")
+    // // public void shouldNotExceedBudget(TestScenario scenario)
+    // public void shouldNotExceedBudget2() {
+    //     new HomePage()
+    //             .open()
+    //             .goToSearch();
+    // }
+
+    // @Test
+    // @Description("Open home page and navigate to search")
+    // // public void shouldNotExceedBudget(TestScenario scenario)
+    // public void shouldNotExceedBudget3() {
+
+    // }
 }
