@@ -40,7 +40,7 @@ public class BrowserFactory {
             driver.manage().window().maximize();
         }
 
-        return driver;
+        return AllureLoggingWebDriverListener.wrap(driver);
     }
 
     private static WebDriver buildChrome() {
