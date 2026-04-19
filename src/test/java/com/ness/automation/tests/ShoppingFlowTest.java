@@ -28,7 +28,7 @@ public class ShoppingFlowTest extends BaseTest {
     @Description("Open home page and navigate to search")
     // public void shouldNotExceedBudget(TestScenario scenario)
     public void shouldNotExceedBudget() {
-        new HomePage().searchItem("shoes");
+        new HomePage().searchItem("shoes").filterMaxByPrice("30");;
               
 
     }

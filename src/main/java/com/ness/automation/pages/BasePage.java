@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 /**
  * Parent of every concrete page object.
@@ -42,19 +43,40 @@ public abstract class BasePage {
         return driver;
     }
 
+    public List<WebElement> getElements(By locator) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        return driver.findElements(locator);
+    }
 
 
     protected WebElement waitForVisible(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
-
+    protected WebElement waitForVisible(WebElement element) {
+        return wait.until(ExpectedConditions.visibilityOf(element));
+    }
     protected WebElement waitForClickable(By locator) {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
+    protected WebElement waitForClickable(WebElement element) {
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    protected void Click(WebElement element) {
+        waitForClickable(element).click();
+    }
+
+
     protected void click(By locator) {
         waitForClickable(locator).click();
     }
+    protected void type(WebElement webElement, String text) {
+        WebElement el = waitForVisible(webElement);
+        el.clear();
+        el.sendKeys(text);
+    }
+
 
     protected void type(By locator, String text) {
         WebElement el = waitForVisible(locator);
