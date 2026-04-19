@@ -1,5 +1,7 @@
 package com.ness.automation.tests;
 
+import com.ness.automation.pages.SearchResultsPage;
+import com.ness.automation.pages.components.ItemData;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -10,6 +12,8 @@ import com.ness.automation.pages.HomePage;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
+
+import java.util.List;
 
 @Epic("Ness Amazon Automation")
 @Feature("Shopping flow")
@@ -28,7 +32,9 @@ public class ShoppingFlowTest extends BaseTest {
     @Description("Open home page and navigate to search")
     // public void shouldNotExceedBudget(TestScenario scenario)
     public void shouldNotExceedBudget() {
-        new HomePage().searchItem("shoes").filterMaxByPrice("30");;
+        SearchResultsPage searchResultsPage=new HomePage().searchItem("shoes");
+        List<ItemData> items= searchResultsPage.getItemsFromPage();
+        searchResultsPage.openItemInNewTab(items.get(0).getLink()).addItemToCart().closeTab();;
               
 
     }

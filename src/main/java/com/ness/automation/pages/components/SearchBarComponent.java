@@ -6,8 +6,8 @@ import org.openqa.selenium.By;
 
 public class SearchBarComponent extends BasePage {
 
-    private static final By SEARCH_INPUT = By.id("gh-ac");
-    private static final By SUBMIT_BUTTON = By.id("gh-search-btn");
+    private static final By SEARCH_INPUT = By.id("twotabsearchtextbox");
+    private static final By SUBMIT_BUTTON = By.id("nav-search-submit-button");
 
     
 

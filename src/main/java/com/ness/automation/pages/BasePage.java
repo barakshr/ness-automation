@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -24,8 +25,10 @@ import java.util.List;
  */
 public abstract class BasePage {
 
+
+    private String tabHandler;
     protected final Logger log = LogManager.getLogger(getClass());
-    protected final WebDriver driver;
+    private final WebDriver driver;
     protected final WebDriverWait wait;
 
     protected BasePage() {
@@ -83,6 +86,20 @@ public abstract class BasePage {
         el.clear();
         el.sendKeys(text);
     }
+
+
+    protected void openNewTab(String link){
+        tabHandler = driver.getWindowHandle();
+        driver.switchTo().newWindow(WindowType.TAB);
+        driver.get(link);
+    }
+
+    public void closeTab(){
+        driver.close();
+        driver.switchTo().window(tabHandler);
+    }
+
+
 
     protected boolean isPresent(By locator) {
         return !driver.findElements(locator).isEmpty();
