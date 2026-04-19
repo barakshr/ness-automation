@@ -1,11 +1,11 @@
 package com.ness.automation.pages;
 
 import com.ness.automation.core.config.ConfigManager;
-import com.ness.automation.pages.components.SearchBarComponent;
+import com.ness.automation.pages.components.TopBarComponent;
 
 public class HomePage extends BasePage {
 
-    private static final SearchBarComponent searchBarComponent = new SearchBarComponent();
+    private static final TopBarComponent searchBarComponent = new TopBarComponent();
 
     public HomePage() {
         super(ConfigManager.AUT_BASE_URL);

@@ -11,6 +11,7 @@ import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.lang.reflect.Constructor;
 import java.time.Duration;
 import java.util.List;
 
@@ -88,10 +89,29 @@ public abstract class BasePage {
     }
 
 
-    protected void openNewTab(String link){
+
+    /**
+     * Opens {@code link} in a new tab and returns a page for that tab. The original window
+     * handle is stored on {@code this} and copied to the returned instance so {@link #closeTab()}
+     * works on either object.
+     */
+    protected <T extends BasePage> T openNewTabAndReturn(Class<T> pageClass, String link) {
         tabHandler = driver.getWindowHandle();
         driver.switchTo().newWindow(WindowType.TAB);
         driver.get(link);
+        try {
+            Constructor<T> ctor = pageClass.getDeclaredConstructor();
+            ctor.setAccessible(true);
+            T page = ctor.newInstance();
+            copyTabHandlerTo(page, this);
+            return page;
+        } catch (ReflectiveOperationException e) {
+            throw new RuntimeException("Could not create page: " + pageClass.getName(), e);
+        }
+    }
+
+    private static void copyTabHandlerTo(BasePage target, BasePage source) {
+        target.tabHandler = source.tabHandler;
     }
 
     public void closeTab(){

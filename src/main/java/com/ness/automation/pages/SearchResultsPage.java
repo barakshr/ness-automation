@@ -27,9 +27,8 @@ public class SearchResultsPage extends BasePage {
     }
 
 
-    public ItemPage openItemInNewTab(String link){
-        openNewTab(link);
-        return new ItemPage();
+    public ItemPage openItemInNewTab(String link) {
+        return openNewTabAndReturn(ItemPage.class, link);
     }
 
 
