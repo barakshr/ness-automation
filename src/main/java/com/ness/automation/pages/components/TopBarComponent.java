@@ -3,6 +3,7 @@ package com.ness.automation.pages.components;
 import org.openqa.selenium.By;
 
 import com.ness.automation.pages.BasePage;
+import com.ness.automation.pages.CartPage;
 
 public class TopBarComponent extends BasePage {
 
@@ -23,8 +24,9 @@ public class TopBarComponent extends BasePage {
         pressOnSearchButton();
     }
 
-    public void openCart() {
+    public CartPage openCart() {
         click(CART_BUTTON);
+        return new CartPage();
     }
 
 }

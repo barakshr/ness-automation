@@ -35,17 +35,22 @@ public class ShoppingFlowTest extends BaseTest {
         SearchResultsPage searchResultsPage = new HomePage().searchItem("shoes");
         List<ItemData> items = searchResultsPage.getItemsFromPage();
 
+     int count=0;
         for (ItemData item : items) {
             if (item.getPrice() < 110) {
+                count++;
                 searchResultsPage.openItemInNewTab(item.getLink()).addItemToCart();
                 searchResultsPage.closeTab();
-                if (items.size() > 4) {
+                if (count > 4) {
                     break;
                 }
             }
         }
-        
-        int y = 0;
+        int y=0;
+       int summery= searchResultsPage.openCart().getCartSummary();
+
+
+        int yd = 0;
 
         // searchResultsPage.openItemInNewTab(items.get(0).getLink()).addItemToCart();
         // searchResultsPage.closeTab();

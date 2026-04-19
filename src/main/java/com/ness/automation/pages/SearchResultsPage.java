@@ -1,6 +1,7 @@
 package com.ness.automation.pages;
 
 import com.ness.automation.pages.components.ItemData;
+import com.ness.automation.pages.components.TopBarComponent;
 import com.ness.automation.utils.Parser;
 
 import org.openqa.selenium.By;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class SearchResultsPage extends BasePage {
 
-
+    private static final TopBarComponent searchBarComponent = new TopBarComponent();
 
     public List<ItemData> getItemsFromPage() {
         List<ItemData> itemDataList = new ArrayList<>();
@@ -29,6 +30,10 @@ public class SearchResultsPage extends BasePage {
 
     public ItemPage openItemInNewTab(String link) {
         return openNewTabAndReturn(ItemPage.class, link);
+    }
+
+    public CartPage openCart() {
+        return searchBarComponent.openCart();
     }
 
 

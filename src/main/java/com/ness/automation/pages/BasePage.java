@@ -124,4 +124,8 @@ public abstract class BasePage {
     protected boolean isPresent(By locator) {
         return !driver.findElements(locator).isEmpty();
     }
+
+    public String getText(By locator) {
+        return getDriver().findElement(locator).getText();
+    }
 }
