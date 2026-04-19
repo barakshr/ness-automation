@@ -32,8 +32,17 @@ public abstract class BasePage {
         this.wait = new WebDriverWait(
                 driver, Duration.ofSeconds(ConfigManager.TIMEOUT_EXPLICIT));
     }
+    protected BasePage(String url) {
+       this();
+       driver.get(url);
+    }
 
-    // ─── Common element helpers ───
+
+    public WebDriver getDriver() {
+        return driver;
+    }
+
+
 
     protected WebElement waitForVisible(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));

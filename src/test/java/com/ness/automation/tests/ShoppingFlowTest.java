@@ -28,10 +28,9 @@ public class ShoppingFlowTest extends BaseTest {
     @Description("Open home page and navigate to search")
     // public void shouldNotExceedBudget(TestScenario scenario)
     public void shouldNotExceedBudget() {
-        new HomePage()
-                .open()
-                .goToSearch();
-                throw new RuntimeException("test");
+        new HomePage().searchItem("shoes");
+              
+
     }
 
     // @Test

@@ -1,5 +1,14 @@
 package com.ness.automation.pages;
 
+import org.openqa.selenium.By;
+
 public class SearchResultsPage extends BasePage {
-    // TODO: implement search filtering, result collection, pagination
+
+    By filterPriceId = By.id("low-price");
+
+    public void filterByPrice(double price) {
+        getDriver().findElement(filterPriceId);
+
+    }
+
 }
