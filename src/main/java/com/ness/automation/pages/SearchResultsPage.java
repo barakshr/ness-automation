@@ -7,12 +7,13 @@ import org.openqa.selenium.WebElement;
 
 public class SearchResultsPage extends BasePage {
 
-    By filterPrice = By.className("price-range");
+    By filterPrice = By.className("textbox__control");
 
-    public void filterMaxByPrice(String price) {
-        List<WebElement> pricesTextBox=getDriver().findElements(filterPrice);
-        WebElement maxPriceElement=pricesTextBox.get(1);
-        type(maxPriceElement,price);
+    public SearchResultsPage filterMaxByPrice(String price) {
+        List<WebElement> pricesTextBox = getDriver().findElements(filterPrice);
+        WebElement maxPriceElement = pricesTextBox.get(1);
+        type(maxPriceElement, price);
+        return this;
     }
 
 }
