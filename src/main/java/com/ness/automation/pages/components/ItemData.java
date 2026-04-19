@@ -3,9 +3,9 @@ package com.ness.automation.pages.components;
 public class ItemData {
 
     private final String link;
-    private final int price;
+    private final double price;
 
-    public ItemData(String link, int price) {
+    public ItemData(String link, double price) {
         this.link = link;
         this.price = price;
     }
@@ -15,7 +15,7 @@ public class ItemData {
         return link;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 }

@@ -47,7 +47,7 @@ public class ShoppingFlowTest extends BaseTest {
             }
         }
         int y=0;
-       int summery= searchResultsPage.openCart().getCartSummary();
+       double summery= searchResultsPage.openCart().getCartSummary();
 
 
         int yd = 0;
