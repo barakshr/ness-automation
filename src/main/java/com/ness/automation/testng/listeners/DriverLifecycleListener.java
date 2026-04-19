@@ -11,7 +11,7 @@ import org.testng.ITestResult;
 
 /**
  * Owns WebDriver lifecycle so init/quit align with TestNG invocation order.
- * Screenshots after each {@code @Test} run while the session is still alive, then {@link DriverManager#quitDriver()}.
+ * Optionally captures a failure screenshot, then {@link DriverManager#quitDriver()} after each {@code @Test}.
  */
 public final class DriverLifecycleListener implements IInvokedMethodListener {
 
@@ -30,18 +30,9 @@ public final class DriverLifecycleListener implements IInvokedMethodListener {
             return;
         }
         try {
-            switch (testResult.getStatus()) {
-                case ITestResult.FAILURE -> {
-                    if (ConfigManager.SCREENSHOT_ON_FAILURE) {
-                        AllureAttachments.screenshot(DriverManager.getDriver(), "failure-screenshot");
-                    }
-                }
-                case ITestResult.SUCCESS -> {
-                    if (ConfigManager.SCREENSHOT_ON_EVERY_PAGE) {
-                        AllureAttachments.screenshot(DriverManager.getDriver(), "final-state");
-                    }
-                }
-                default -> { /* no screenshot */ }
+            if (testResult.getStatus() == ITestResult.FAILURE
+                    && ConfigManager.SCREENSHOT_ON_FAILURE) {
+                AllureAttachments.screenshot(DriverManager.getDriver(), "failure-screenshot");
             }
         } catch (Exception e) {
             log.warn("Post-test screenshot failed: {}", e.getMessage());

@@ -37,7 +37,6 @@ public final class ConfigManager {
     // ─── Reporting ───
     public static final String REPORT_ALLURE_RESULTS_DIR;
     public static final boolean SCREENSHOT_ON_FAILURE;
-    public static final boolean SCREENSHOT_ON_EVERY_PAGE;
 
     // ─── Test Data ───
     public static final String TESTDATA_SCENARIOS_PATH;
@@ -59,7 +58,6 @@ public final class ConfigManager {
 
         REPORT_ALLURE_RESULTS_DIR   = optional(props, "report.allure.results.dir", "allure-results");
         SCREENSHOT_ON_FAILURE       = Boolean.parseBoolean(required(props, "screenshot.on.failure"));
-        SCREENSHOT_ON_EVERY_PAGE    = Boolean.parseBoolean(required(props, "screenshot.on.every.page"));
 
         TESTDATA_SCENARIOS_PATH     = required(props, "testdata.scenarios.path");
     }
