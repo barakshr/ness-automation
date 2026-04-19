@@ -1,4 +1,4 @@
-package com.ness.automation.core.driver;
+package com.ness.automation.testng.listeners;
 
 import io.qameta.allure.Allure;
 import io.qameta.allure.model.Status;
