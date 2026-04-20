@@ -43,7 +43,7 @@ public class ShoppingTest extends BaseTest {
             cartTotalPrice = searchResultsPage.openCart().getCartSummary();
         }
 
-        AssertBudgetInCart.assertBudgetInCart(maxPrice, count, cartTotalPrice);
+        AssertBudgetInCart.assertCartTotalNotExceeds(maxPrice, count, cartTotalPrice);
     }
 
     public void assertAmount(int budget, int count, int cartTotalPrice) {

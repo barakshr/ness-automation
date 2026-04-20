@@ -8,7 +8,7 @@ import io.qameta.allure.Step;
 public class AssertBudgetInCart {
 
     @Step("Assert budget in cart")
-    public static void assertBudgetInCart(int budget, int count, Integer cartTotalPrice) {
+    public static void assertCartTotalNotExceeds(int budget, int count, Integer cartTotalPrice) {
 
         if (cartTotalPrice == null) {
             Allure.step("No items added to cart");

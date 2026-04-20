@@ -6,7 +6,6 @@ import com.ness.automation.pages.components.PaginationComponent;
 import com.ness.automation.pages.components.TopBarComponent;
 import com.ness.automation.utils.NumberParser;
 
-import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
