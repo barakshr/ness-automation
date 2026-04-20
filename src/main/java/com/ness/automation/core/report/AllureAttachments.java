@@ -1,7 +1,9 @@
-package com.ness.automation.utils;
+package com.ness.automation.core.report;
 
 import io.qameta.allure.Allure;
 import org.openqa.selenium.WebDriver;
+
+import com.ness.automation.utils.ScreenshotUtils;
 
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;

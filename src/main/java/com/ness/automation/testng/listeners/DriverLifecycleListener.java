@@ -2,7 +2,8 @@ package com.ness.automation.testng.listeners;
 
 import com.ness.automation.core.config.ConfigManager;
 import com.ness.automation.core.driver.DriverManager;
-import com.ness.automation.utils.AllureAttachments;
+import com.ness.automation.core.report.AllureAttachments;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.IInvokedMethod;
