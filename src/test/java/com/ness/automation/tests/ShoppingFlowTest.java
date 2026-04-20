@@ -1,19 +1,18 @@
 package com.ness.automation.tests;
 
-import java.util.List;
-
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
 import com.ness.automation.base.BaseTest;
 import com.ness.automation.core.DataReader;
 import com.ness.automation.pages.HomePage;
 import com.ness.automation.pages.SearchResultsPage;
 import com.ness.automation.pages.components.ItemData;
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Epic("Ness Amazon Automation")
 @Feature("Shopping flow")
@@ -23,7 +22,7 @@ public class ShoppingFlowTest extends BaseTest {
     public Object[][] scenarios() {
         return DataReader.loadScenarios()
                 .stream()
-                .map(s -> new Object[] { s })
+                .map(s -> new Object[]{s})
                 .toArray(Object[][]::new);
     }
 
@@ -33,20 +32,37 @@ public class ShoppingFlowTest extends BaseTest {
     // public void shouldNotExceedBudget(TestScenario scenario)
     public void shouldNotExceedBudget() {
 
+
         SearchResultsPage test = new SearchResultsPage(
                 "https://www.amazon.com/s?k=shoes&crid=29K4W03Y3P9F7&sprefix=shoes%2Caps%2C210&ref=nb_sb_noss_2");
 
-        if (test.isNextButtonEnabled()) {
-            test.clickNextButton();
-        }
+
+        int number = test.getNumberOfPages();
+
+        List<ItemData> items = new ArrayList<>();
+//        if (number == 1) {
+//            items = test.getItemsFromPage();
+//        } else {
+            for (int i = 1; i < number; i++) {
+                List<ItemData> temp= test.getItemsFromPage();
+                items.addAll(temp);
+                test.clickNextButton();
+            }
+
+        items = test.getItemsFromPage();
+
 
         if (test.isNextButtonEnabled()) {
             test.clickNextButton();
         }
-        
+
+//        if (test.isNextButtonEnabled()) {
+//            test.clickNextButton();
+//        }
+
 
         SearchResultsPage searchResultsPage = new HomePage().searchItem("shoes");
-        List<ItemData> items = searchResultsPage.getItemsFromPage();
+        items = searchResultsPage.getItemsFromPage();
 
         int count = 0;
         for (ItemData item : items) {
@@ -54,7 +70,7 @@ public class ShoppingFlowTest extends BaseTest {
                 count++;
                 searchResultsPage.openItemInNewTab(item.getLink()).addItemToCart();
                 searchResultsPage.closeTab();
-                if (count > 4) {
+                if (count > 5) {
                     break;
                 }
             }

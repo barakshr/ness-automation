@@ -55,6 +55,10 @@ public class SearchResultsPage extends BasePage {
         return paginationComponent.isNextButtonEnabled();
     }
 
+    public int getNumberOfPages(){
+        return paginationComponent.getNumberOfPage();
+    }
+
 
 
 }
