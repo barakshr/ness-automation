@@ -10,7 +10,7 @@
     {
       "id": "shoes_budget_220",
       "description": "Search for shoes under $220, add up to 5 to cart, verify total does not exceed budget",
-      "query": "shoes",
+      "query": "pantes",
       "maxPricePerItem": 220,
       "itemsCount": 1
     }

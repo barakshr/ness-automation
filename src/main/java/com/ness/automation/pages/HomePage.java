@@ -5,14 +5,14 @@ import com.ness.automation.pages.components.TopBarComponent;
 
 public class HomePage extends BasePage {
 
-    private static final TopBarComponent searchBarComponent = new TopBarComponent();
+    private final TopBarComponent topBarComponent = new TopBarComponent();
 
     public HomePage() {
         super(ConfigManager.AUT_BASE_URL);
     }
 
     public SearchResultsPage searchItem(String itemName) {
-        searchBarComponent.searchForItem(itemName);
+        topBarComponent.searchForItem(itemName);
         return new SearchResultsPage();
     }
 

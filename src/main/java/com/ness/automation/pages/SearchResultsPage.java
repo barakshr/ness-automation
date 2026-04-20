@@ -12,8 +12,8 @@ import java.util.List;
 
 public class SearchResultsPage extends BasePage {
 
-    private static final TopBarComponent topBarComponent = new TopBarComponent();
-    private static final PaginationComponent paginationComponent = new PaginationComponent();
+    private final TopBarComponent topBarComponent = new TopBarComponent();
+    private final PaginationComponent paginationComponent = new PaginationComponent();
 
     By itemPriceLink = By.xpath("//*[@aria-describedby='price-link']");
 
