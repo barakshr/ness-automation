@@ -4,12 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.ness.automation.assertions.AssertBudgetInCart;
 import com.ness.automation.base.BaseTest;
-import com.ness.automation.core.DataReader;
 import com.ness.automation.models.TestScenario;
 import com.ness.automation.pages.HomePage;
 import com.ness.automation.pages.SearchResultsPage;
@@ -23,10 +21,7 @@ import io.qameta.allure.Feature;
 @Epic("Ness Amazon Automation")
 @Feature("Shopping flow")
 public class ShoppingTest extends BaseTest {
-    @DataProvider(name = "scenarios", parallel = false)
-    public Object[][] scenarios() {
-        return DataReader.loadScenarios().stream().map(s -> new Object[] { s }).toArray(Object[][]::new);
-    }
+
 
     @Test(dataProvider = "scenarios")
     @Description("Open home page and navigate to search")
