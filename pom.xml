@@ -30,7 +30,7 @@
         <compiler.plugin.version>3.13.0</compiler.plugin.version>
 
         <!-- Allure: project root so IDE runs and `mvn allure:serve` see the same folder as `mvn test` -->
-        <allure.results.directory>${project.basedir}/allure-results</allure.results.directory>
+        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
 
         <!-- TestNG suite (absolute path so Surefire always finds it regardless of cwd) -->
         <suite.xml.file>${project.basedir}/src/test/resources/testng.xml</suite.xml.file>
