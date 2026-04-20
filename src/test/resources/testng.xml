@@ -10,7 +10,7 @@
 
     <test name="Shopping Flow">
         <classes>
-            <class name="com.ness.automation.tests.ShoppingFlowTest"/>
+            <class name="com.ness.automation.tests.ShoppingTest"/>
         </classes>
     </test>
 
