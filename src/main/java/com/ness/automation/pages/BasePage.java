@@ -33,6 +33,7 @@ public abstract class BasePage {
     protected final WebDriverWait wait;
 
     protected BasePage() {
+        DriverManager.initDriver();
         this.driver = DriverManager.getDriver();
         this.wait = new WebDriverWait(
                 driver, Duration.ofSeconds(ConfigManager.TIMEOUT_EXPLICIT));

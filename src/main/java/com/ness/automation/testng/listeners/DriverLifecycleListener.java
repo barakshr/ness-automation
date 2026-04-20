@@ -11,19 +11,12 @@ import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 
 /**
- * Owns WebDriver lifecycle so init/quit align with TestNG invocation order.
- * Optionally captures a failure screenshot, then {@link DriverManager#quitDriver()} after each {@code @Test}.
+ * Owns WebDriver teardown: optional failure screenshot, then {@link DriverManager#quitDriver()}
+ * after each {@code @Test}. Initialization happens lazily in {@link com.ness.automation.pages.BasePage}.
  */
 public final class DriverLifecycleListener implements IInvokedMethodListener {
 
     private static final Logger log = LogManager.getLogger(DriverLifecycleListener.class);
-
-    @Override
-    public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-        if (method.isConfigurationMethod() && method.getTestMethod().isBeforeMethodConfiguration()) {
-            DriverManager.initDriver();
-        }
-    }
 
     @Override
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {

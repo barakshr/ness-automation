@@ -41,11 +41,4 @@ public class ShoppingTest extends BaseTest {
         AssertBudgetInCart.assertCartTotalNotExceeds(maxPrice, count, cartTotalPrice);
     }
 
-    public void assertAmount(int budget, int count, int cartTotalPrice) {
-        int totalBudgetAllowed = budget * count;
-        Assert.assertTrue(cartTotalPrice <= totalBudgetAllowed,
-                String.format("cart total price : %s exceed the allowed total budget:%s ", cartTotalPrice,
-                        totalBudgetAllowed));
-    }
-
 }

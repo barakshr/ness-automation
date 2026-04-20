@@ -13,13 +13,13 @@ import org.openqa.selenium.WebDriver;
  * <p>
  * Usage:
  * <pre>
- *   // @BeforeMethod
- *   DriverManager.initDriver();
+ *   // Lazy: first {@link com.ness.automation.pages.BasePage} construction calls {@link #initDriver()}.
  *
- *   // anywhere
+ *   // Or explicit:
+ *   DriverManager.initDriver();
  *   WebDriver driver = DriverManager.getDriver();
  *
- *   // @AfterMethod
+ *   // Per-test cleanup: {@link com.ness.automation.testng.listeners.DriverLifecycleListener}
  *   DriverManager.quitDriver();
  * </pre>
  */
@@ -55,7 +55,7 @@ public final class DriverManager {
             throw new IllegalStateException(
                     "WebDriver not initialized for thread '"
                             + Thread.currentThread().getName()
-                            + "'. Ensure BaseTest.@BeforeMethod has run.");
+                            + "'. Open a page (BasePage subclass) or call initDriver() first.");
         }
         return driver;
     }
