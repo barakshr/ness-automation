@@ -67,6 +67,10 @@ public abstract class BasePage {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
+    protected void waitForClickable(By locator , int timeout ) {
+        wait.withTimeout(Duration.ofSeconds(timeout)).until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
     protected void Click(WebElement element) {
         waitForClickable(element).click();
     }
@@ -114,6 +118,9 @@ public abstract class BasePage {
         target.tabHandler = source.tabHandler;
     }
 
+
+
+    
     public void closeTab(){
         driver.close();
         driver.switchTo().window(tabHandler);
@@ -128,4 +135,6 @@ public abstract class BasePage {
     public String getText(By locator) {
         return getDriver().findElement(locator).getText();
     }
+
+
 }

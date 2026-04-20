@@ -32,10 +32,23 @@ public class ShoppingFlowTest extends BaseTest {
     @Description("Open home page and navigate to search")
     // public void shouldNotExceedBudget(TestScenario scenario)
     public void shouldNotExceedBudget() {
+
+        SearchResultsPage test = new SearchResultsPage(
+                "https://www.amazon.com/s?k=shoes&crid=29K4W03Y3P9F7&sprefix=shoes%2Caps%2C210&ref=nb_sb_noss_2");
+
+        if (test.isNextButtonEnabled()) {
+            test.clickNextButton();
+        }
+
+        if (test.isNextButtonEnabled()) {
+            test.clickNextButton();
+        }
+        
+
         SearchResultsPage searchResultsPage = new HomePage().searchItem("shoes");
         List<ItemData> items = searchResultsPage.getItemsFromPage();
 
-     int count=0;
+        int count = 0;
         for (ItemData item : items) {
             if (item.getPrice() < 110) {
                 count++;
@@ -46,9 +59,9 @@ public class ShoppingFlowTest extends BaseTest {
                 }
             }
         }
-        int y=0;
-       double summery= searchResultsPage.openCart().getCartSummary();
 
+        int y = 0;
+        double summery = searchResultsPage.openCart().getCartSummary();
 
         int yd = 0;
 

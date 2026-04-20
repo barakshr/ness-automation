@@ -1,2 +1,9 @@
-package com.ness.automation.workflows;public class FlowScenario {
+package com.ness.automation.workflows;
+
+public class FlowScenario {
+
+
+
+
+
 }

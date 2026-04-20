@@ -7,12 +7,23 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.ness.automation.pages.components.ItemData;
+import com.ness.automation.pages.components.PaginationComponent;
 import com.ness.automation.pages.components.TopBarComponent;
 import com.ness.automation.utils.Parser;
 
 public class SearchResultsPage extends BasePage {
 
     private static final TopBarComponent searchBarComponent = new TopBarComponent();
+    private static final PaginationComponent paginationComponent = new PaginationComponent();
+
+
+    public SearchResultsPage() {
+        super();
+    }
+
+    public SearchResultsPage(String url) {
+        super(url);
+    }
 
     public List<ItemData> getItemsFromPage() {
         List<ItemData> itemDataList = new ArrayList<>();
@@ -34,5 +45,16 @@ public class SearchResultsPage extends BasePage {
     public CartPage openCart() {
         return searchBarComponent.openCart();
     }
+
+    public SearchResultsPage clickNextButton() {
+        paginationComponent.clickNextButton();
+        return this;
+    }
+
+    public Boolean isNextButtonEnabled() {
+        return paginationComponent.isNextButtonEnabled();
+    }
+
+
 
 }
