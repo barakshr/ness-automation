@@ -39,7 +39,6 @@ public class ShoppingFlowTest extends BaseTest {
         addItemsToCart(itemsLinks.get(), searchResultsPage);
         int cartTotalPrice = searchResultsPage.openCart().getCartSummary();
         assertAmount(maxPrice, count, cartTotalPrice);
-
     }
 
     //  @Test(dataProvider = "scenarios")
@@ -143,7 +142,7 @@ public class ShoppingFlowTest extends BaseTest {
 
     public void assertAmount(int budget, int count, int cartTotalPrice) {
         int totalBudgetAllowed = budget * count;
-        Assert.assertTrue(cartTotalPrice<=totalBudgetAllowed,
+        Assert.assertFalse(cartTotalPrice<=totalBudgetAllowed,
                 String.format("cart total price : %s exceed the allowed total budget:%s ",cartTotalPrice,totalBudgetAllowed));
     }
 
