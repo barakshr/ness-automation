@@ -4,7 +4,7 @@
       "id": "shoes_budget_220",
       "description": "Search for shoes under $220, add up to 5 to cart, verify total does not exceed budget",
       "query": "shoes",
-      "maxPricePerItem": 1,
+      "maxPricePerItem": 220,
       "itemsCount": 2
     }
     
