@@ -2,6 +2,8 @@ package com.ness.automation.tests;
 
 import com.ness.automation.base.BaseTest;
 import com.ness.automation.core.DataReader;
+import com.ness.automation.models.TestScenario;
+import com.ness.automation.pages.HomePage;
 import com.ness.automation.pages.SearchResultsPage;
 import com.ness.automation.pages.components.ItemData;
 import io.qameta.allure.Description;
@@ -16,20 +18,17 @@ import java.util.List;
 @Epic("Ness Amazon Automation")
 @Feature("Shopping flow")
 public class ShoppingFlowTest extends BaseTest {
-
     @DataProvider(name = "scenarios", parallel = false)
     public Object[][] scenarios() {
         return DataReader.loadScenarios().stream().map(s -> new Object[]{s}).toArray(Object[][]::new);
     }
 
-    // @Test(dataProvider = "scenarios")
-    @Test
+    @Test(dataProvider = "scenarios")
     @Description("Open home page and navigate to search")
-    // public void shouldNotExceedBudget(TestScenario scenario)
-    public void shouldNotExceedBudget() {
-        SearchResultsPage searchResultsPage = new SearchResultsPage("https://www.amazon.com/s?k=shoes&crid=29K4W03Y3P9F7&sprefix=shoes%2Caps%2C210&ref=nb_sb_noss_2");
-        int count = 3;
-        int maxPrice = 1;
+    public void shouldNotExceedBudget(TestScenario scenario) {
+        SearchResultsPage searchResultsPage = new HomePage().searchItem(scenario.getQuery());
+        int count = scenario.getItemsCount();
+        double maxPrice = scenario.getMaxPricePerItem();
         int number = searchResultsPage.getNumberOfPages();
         List<ItemData> items = new ArrayList<>();
 
@@ -38,12 +37,6 @@ public class ShoppingFlowTest extends BaseTest {
             List<ItemData> filteredItems = searchResultsPage.getItemsFromPage().stream().filter(x -> x.getPrice() < maxPrice).toList();
             items.addAll(filteredItems);
 
-
-//            if (items.size() >= count) {
-//                newList = items.subList(0, count);
-//            } else {
-//                newList = items;
-//            }
         } else {
             for (int i = 1; i < number; i++) {
                 if (items.size() >= count) {
