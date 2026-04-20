@@ -1,6 +1,6 @@
 package com.ness.automation.utils;
 
-public class Parser {
+public class NumberParser {
 
     public static double parseToNumber(String raw) {
         if (raw == null || raw.isBlank()) {

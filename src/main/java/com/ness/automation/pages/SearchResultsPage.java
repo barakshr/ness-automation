@@ -3,7 +3,7 @@ package com.ness.automation.pages;
 import com.ness.automation.pages.components.ItemData;
 import com.ness.automation.pages.components.PaginationComponent;
 import com.ness.automation.pages.components.TopBarComponent;
-import com.ness.automation.utils.Parser;
+import com.ness.automation.utils.NumberParser;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -39,7 +39,7 @@ public class SearchResultsPage extends BasePage {
         List<ItemData> itemDataList = new ArrayList<>();
         for (WebElement webElement : elements) {
             String priceText = webElement.findElement(itemPrice).getText();
-            double price = Parser.parseToNumber(priceText);
+            double price = NumberParser.parseToNumber(priceText);
             String linkToItem = webElement.getAttribute("href");
             ItemData itemData = new ItemData(linkToItem, price);
             itemDataList.add(itemData);

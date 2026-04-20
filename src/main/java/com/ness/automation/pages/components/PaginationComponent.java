@@ -2,7 +2,7 @@ package com.ness.automation.pages.components;
 
 import com.ness.automation.core.driver.DriverManager;
 import com.ness.automation.pages.BasePage;
-import com.ness.automation.utils.Parser;
+import com.ness.automation.utils.NumberParser;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +20,7 @@ public class PaginationComponent extends BasePage {
         try {
             waitForVisible(nextButton);
             String lastPage = getText(lastPageButton);
-            return (int) Parser.parseToNumber(lastPage);
+            return (int) NumberParser.parseToNumber(lastPage);
         } catch (Exception e) {
             return 1;
         }

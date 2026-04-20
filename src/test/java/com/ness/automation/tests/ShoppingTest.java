@@ -3,6 +3,7 @@ package com.ness.automation.tests;
 import java.util.List;
 import java.util.Optional;
 
+import com.ness.automation.assertions.AssertBudgetInCart;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -41,7 +42,7 @@ public class ShoppingTest extends BaseTest {
         }
         ItemsWorkFlows.addItemsToCart(itemsLinks.get(), searchResultsPage);
         int cartTotalPrice = searchResultsPage.openCart().getCartSummary();
-        assertAmount(maxPrice, count, cartTotalPrice);
+        AssertBudgetInCart.assertBudgetInCart(maxPrice, count, cartTotalPrice);
     }
 
     public void assertAmount(int budget, int count, int cartTotalPrice) {
