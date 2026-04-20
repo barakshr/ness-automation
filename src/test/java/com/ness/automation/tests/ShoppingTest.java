@@ -3,11 +3,11 @@ package com.ness.automation.tests;
 import java.util.List;
 import java.util.Optional;
 
-import com.ness.automation.assertions.AssertBudgetInCart;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.ness.automation.assertions.AssertBudgetInCart;
 import com.ness.automation.base.BaseTest;
 import com.ness.automation.core.DataReader;
 import com.ness.automation.models.TestScenario;
@@ -37,11 +37,12 @@ public class ShoppingTest extends BaseTest {
         SearchResultsPage searchResultsPage = new HomePage().searchItem(scenario.getQuery());
         Optional<List<String>> itemsLinks = SearchWorkFlowScenarios.searchItemsByNameUnderPrice(query, maxPrice, count,
                 searchResultsPage);
-        if (itemsLinks.isEmpty()) {
-            return;
+        Integer cartTotalPrice = null;
+        if (itemsLinks.isPresent()) {
+            ItemsWorkFlows.addItemsToCart(itemsLinks.get(), searchResultsPage);
+            cartTotalPrice = searchResultsPage.openCart().getCartSummary();
         }
-        ItemsWorkFlows.addItemsToCart(itemsLinks.get(), searchResultsPage);
-        int cartTotalPrice = searchResultsPage.openCart().getCartSummary();
+
         AssertBudgetInCart.assertBudgetInCart(maxPrice, count, cartTotalPrice);
     }
 
