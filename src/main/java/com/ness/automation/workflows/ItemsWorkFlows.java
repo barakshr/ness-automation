@@ -3,7 +3,8 @@ package com.ness.automation.workflows;
 
 import java.util.List;
 
-import com.ness.automation.pages.SearchResultsPage;import io.qameta.allure.Allure;
+import com.ness.automation.pages.SearchResultsPage;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 
 public class ItemsWorkFlows {

@@ -3,6 +3,7 @@ package com.ness.automation.pages.components;
 import com.ness.automation.core.driver.DriverManager;
 import com.ness.automation.pages.BasePage;
 import com.ness.automation.utils.Parser;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -14,6 +15,7 @@ public class PaginationComponent extends BasePage {
     protected final WebDriver driver;
 
 
+    @Step("Read number of pagination pages")
     public int getNumberOfPage() {
         try {
             waitForVisible(nextButton);
@@ -30,11 +32,13 @@ public class PaginationComponent extends BasePage {
         this.driver = DriverManager.getDriver();
     }
 
+    @Step("Click next page in pagination")
     public PaginationComponent clickNextButton() {
         click(nextButton);
         return this;
     }
 
+    @Step("Check if next page button is enabled")
     public Boolean isNextButtonEnabled() {
         try {
             waitForClickable(nextButton, 7);

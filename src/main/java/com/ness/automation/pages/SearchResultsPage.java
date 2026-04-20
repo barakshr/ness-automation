@@ -4,6 +4,7 @@ import com.ness.automation.pages.components.ItemData;
 import com.ness.automation.pages.components.PaginationComponent;
 import com.ness.automation.pages.components.TopBarComponent;
 import com.ness.automation.utils.Parser;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -27,6 +28,7 @@ public class SearchResultsPage extends BasePage {
         super(url);
     }
 
+    @Step("Collect items from current search results page")
     public List<ItemData> getItemsFromPage() {
         List<WebElement> elements;
         try {
@@ -45,15 +47,18 @@ public class SearchResultsPage extends BasePage {
         return itemDataList;
     }
 
+    @Step("Open item in new tab: {link}")
     public ItemPage openItemInNewTab(String link) {
         return openNewTabAndReturn(ItemPage.class, link);
     }
 
+    @Step("Open cart from search results")
     public CartPage openCart() {
         return topBarComponent.openCart();
 
     }
 
+    @Step("Go to next search results page")
     public SearchResultsPage clickNextButton() {
         paginationComponent.clickNextButton();
         return this;
@@ -61,6 +66,7 @@ public class SearchResultsPage extends BasePage {
 
 
 
+    @Step("Get number of available result pages")
     public int getNumberOfPages() {
         return paginationComponent.getNumberOfPage();
     }
