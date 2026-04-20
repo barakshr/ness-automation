@@ -1,7 +1,6 @@
 package com.ness.automation.core.driver;
 
 import com.ness.automation.core.config.ConfigManager;
-import com.ness.automation.testng.listeners.AllureLoggingWebDriverListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -41,7 +40,7 @@ public class BrowserFactory {
             driver.manage().window().maximize();
         }
 
-        return AllureLoggingWebDriverListener.wrap(driver);
+        return driver;
     }
 
     private static WebDriver buildChrome() {
