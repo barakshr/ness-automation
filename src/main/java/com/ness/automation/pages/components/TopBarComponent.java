@@ -1,5 +1,6 @@
 package com.ness.automation.pages.components;
 
+import com.ness.automation.utils.Parser;
 import org.openqa.selenium.By;
 
 import com.ness.automation.pages.BasePage;
@@ -10,6 +11,7 @@ public class TopBarComponent extends BasePage {
     private static final By SEARCH_INPUT = By.id("twotabsearchtextbox");
     private static final By SUBMIT_BUTTON = By.id("nav-search-submit-button");
     private static final By CART_BUTTON = By.id("nav-cart-text-container");
+
 
     public void enterTextToSearchBox(String itemName) {
         type(SEARCH_INPUT, itemName);
@@ -28,5 +30,8 @@ public class TopBarComponent extends BasePage {
         click(CART_BUTTON);
         return new CartPage();
     }
+
+
+
 
 }

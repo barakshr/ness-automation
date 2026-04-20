@@ -1,21 +1,23 @@
 package com.ness.automation.pages;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
 import com.ness.automation.pages.components.ItemData;
 import com.ness.automation.pages.components.PaginationComponent;
 import com.ness.automation.pages.components.TopBarComponent;
 import com.ness.automation.utils.Parser;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SearchResultsPage extends BasePage {
 
-    private static final TopBarComponent searchBarComponent = new TopBarComponent();
+    private static final TopBarComponent topBarComponent = new TopBarComponent();
     private static final PaginationComponent paginationComponent = new PaginationComponent();
 
+    By itemPriceLink = By.xpath("//*[@aria-describedby='price-link']");
+
+    By itemPrice = By.className("a-price-whole");
 
     public SearchResultsPage() {
         super();
@@ -26,10 +28,15 @@ public class SearchResultsPage extends BasePage {
     }
 
     public List<ItemData> getItemsFromPage() {
+        List<WebElement> elements;
+        try {
+            elements = getElements(itemPriceLink);
+        } catch (Exception ignore) {
+            return null;
+        }
         List<ItemData> itemDataList = new ArrayList<>();
-        List<WebElement> elemets = getDriver().findElements(By.xpath("//*[@aria-describedby='price-link']"));
-        for (WebElement webElement : elemets) {
-            String priceText = webElement.findElement(By.className("a-price-whole")).getText();
+        for (WebElement webElement : elements) {
+            String priceText = webElement.findElement(itemPrice).getText();
             double price = Parser.parseAsDouble(priceText);
             String linkToItem = webElement.getAttribute("href");
             ItemData itemData = new ItemData(linkToItem, price);
@@ -43,7 +50,8 @@ public class SearchResultsPage extends BasePage {
     }
 
     public CartPage openCart() {
-        return searchBarComponent.openCart();
+        return topBarComponent.openCart();
+
     }
 
     public SearchResultsPage clickNextButton() {
@@ -51,14 +59,11 @@ public class SearchResultsPage extends BasePage {
         return this;
     }
 
-    public Boolean isNextButtonEnabled() {
-        return paginationComponent.isNextButtonEnabled();
-    }
 
-    public int getNumberOfPages(){
+
+    public int getNumberOfPages() {
         return paginationComponent.getNumberOfPage();
     }
-
 
 
 }
