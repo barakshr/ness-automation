@@ -45,70 +45,9 @@ public class ShoppingFlowTest extends BaseTest {
         assertAmount(maxPrice, count, cartTotalPrice);
     }
 
-//    @Test(dataProvider = "scenarios")
-    @Description("Open home page and navigate to search")
-    public void shouldNotExceedBudgetOldWay(TestScenario scenario) {
-        int count = scenario.getItemsCount();
-        int maxPrice = scenario.getMaxPricePerItem();
-        String query = scenario.getQuery();
-        SearchResultsPage searchResultsPage = new HomePage().searchItem(scenario.getQuery());
-        Optional<List<String>> itemsLinks = searchItemsByNameUnderPrice(query, maxPrice, count, searchResultsPage);
-        if (itemsLinks.isEmpty()) {
-            return;
-        }
-        addItemsToCart(itemsLinks.get(), searchResultsPage);
-        int cartTotalPrice = searchResultsPage.openCart().getCartSummary();
-        assertAmount(maxPrice, count, cartTotalPrice);
-    }
 
-  
 
-    public Optional<List<String>> searchItemsByNameUnderPrice(String query, int maxPrice, int count, SearchResultsPage searchResultsPage) {
-
-        int numberOfPages = searchResultsPage.getNumberOfPages();
-        List<ItemData> itemsUnderPrice = new ArrayList<>();
-
-        if (numberOfPages == 1) {
-            List<ItemData> tempFilteredItems = searchResultsPage.getItemsFromPage().stream()
-                    .filter(x -> x.getPrice() < maxPrice).toList();
-            itemsUnderPrice.addAll(tempFilteredItems);
-
-        } else {
-            for (int i = 1; i < numberOfPages; i++) {
-                if (itemsUnderPrice.size() >= count) {
-                    break;
-                }
-                List<ItemData> tempFilteredItems = searchResultsPage.getItemsFromPage().stream()
-                        .filter(x -> x.getPrice() < maxPrice).toList();
-                itemsUnderPrice.addAll(tempFilteredItems);
-                searchResultsPage.clickNextButton();
-            }
-        }
-
-        if (itemsUnderPrice.size() == 0) {
-            return Optional.empty();
-        }
-
-        List<ItemData> itemLimitList;
-        if (itemsUnderPrice.size() >= count) {
-            itemLimitList = itemsUnderPrice.subList(0, count);
-        } else {
-            itemLimitList = itemsUnderPrice;
-        }
-
-        List<String> itemsLinks = itemLimitList.stream().map(x -> x.getLink()).toList();
-        return Optional.of(itemsLinks);
-
-    }
-
-    public void addItemsToCart(List<String> itemsLinks, SearchResultsPage searchResultsPage) {
-        for (String itemLink : itemsLinks) {
-            searchResultsPage
-                    .openItemInNewTab(itemLink)
-                    .addItemToCart()
-                    .closeTab();
-        }
-    }
+ 
 
     public void assertAmount(int budget, int count, int cartTotalPrice) {
         int totalBudgetAllowed = budget * count;
