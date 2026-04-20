@@ -3,7 +3,10 @@ package com.ness.automation.pages;
 import com.ness.automation.pages.components.ItemData;
 import com.ness.automation.pages.components.PaginationComponent;
 import com.ness.automation.pages.components.TopBarComponent;
+import com.ness.automation.utils.AllureAttachments;
 import com.ness.automation.utils.NumberParser;
+
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -49,6 +52,7 @@ public class SearchResultsPage extends BasePage {
 
     @Step("Open item in new tab: {link}")
     public ItemPage openItemInNewTab(String link) {
+        AllureAttachments.screenshot(getDriver(), "Open item in new tab: " + link);
         return openNewTabAndReturn(ItemPage.class, link);
     }
 
