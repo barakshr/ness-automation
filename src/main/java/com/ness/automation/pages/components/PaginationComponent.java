@@ -18,7 +18,7 @@ public class PaginationComponent extends BasePage {
         try {
             waitForVisible(nextButton);
             String lastPage = getText(lastPageButton);
-            return (int) Parser.parseAsDouble(lastPage);
+            return (int) Parser.parseToNumber(lastPage);
         } catch (Exception e) {
             return 1;
         }

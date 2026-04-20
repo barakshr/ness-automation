@@ -37,7 +37,7 @@ public class SearchResultsPage extends BasePage {
         List<ItemData> itemDataList = new ArrayList<>();
         for (WebElement webElement : elements) {
             String priceText = webElement.findElement(itemPrice).getText();
-            double price = Parser.parseAsDouble(priceText);
+            double price = Parser.parseToNumber(priceText);
             String linkToItem = webElement.getAttribute("href");
             ItemData itemData = new ItemData(linkToItem, price);
             itemDataList.add(itemData);

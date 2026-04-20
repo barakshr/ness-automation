@@ -9,11 +9,13 @@ import com.ness.automation.pages.components.ItemData;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Epic("Ness Amazon Automation")
 @Feature("Shopping flow")
@@ -26,106 +28,123 @@ public class ShoppingFlowTest extends BaseTest {
     @Test(dataProvider = "scenarios")
     @Description("Open home page and navigate to search")
     public void shouldNotExceedBudget(TestScenario scenario) {
+        int count = scenario.getItemsCount();
+        int maxPrice = scenario.getMaxPricePerItem();
+        String query = scenario.getQuery();
+        SearchResultsPage searchResultsPage = new HomePage().searchItem(scenario.getQuery());
+        Optional<List<String>> itemsLinks = searchItemsByNameUnderPrice(query, maxPrice, count, searchResultsPage);
+        if (itemsLinks.isEmpty()) {
+            return;
+        }
+        addItemsToCart(itemsLinks.get(), searchResultsPage);
+        int cartTotalPrice = searchResultsPage.openCart().getCartSummary();
+        assertAmount(maxPrice, count, cartTotalPrice);
+
+    }
+
+    //  @Test(dataProvider = "scenarios")
+    @Description("Open home page and navigate to search")
+    public void shouldNotExceedBudgetOld(TestScenario scenario) {
         SearchResultsPage searchResultsPage = new HomePage().searchItem(scenario.getQuery());
         int count = scenario.getItemsCount();
         double maxPrice = scenario.getMaxPricePerItem();
-        int number = searchResultsPage.getNumberOfPages();
-        List<ItemData> items = new ArrayList<>();
+        int numberOfPages = searchResultsPage.getNumberOfPages();
+        List<ItemData> itemsUnderPrice = new ArrayList<>();
 
-
-        if (number == 1) {
-            List<ItemData> filteredItems = searchResultsPage.getItemsFromPage().stream().filter(x -> x.getPrice() < maxPrice).toList();
-            items.addAll(filteredItems);
+        if (numberOfPages == 1) {
+            List<ItemData> tempFilteredItems = searchResultsPage.getItemsFromPage().stream()
+                    .filter(x -> x.getPrice() < maxPrice).toList();
+            itemsUnderPrice.addAll(tempFilteredItems);
 
         } else {
-            for (int i = 1; i < number; i++) {
-                if (items.size() >= count) {
+            for (int i = 1; i < numberOfPages; i++) {
+                if (itemsUnderPrice.size() >= count) {
                     break;
                 }
-                List<ItemData> filteredItems = searchResultsPage.getItemsFromPage().stream().filter(x -> x.getPrice() < maxPrice).toList();
-                items.addAll(filteredItems);
+                List<ItemData> tempFilteredItems = searchResultsPage.getItemsFromPage().stream()
+                        .filter(x -> x.getPrice() < maxPrice).toList();
+                itemsUnderPrice.addAll(tempFilteredItems);
                 searchResultsPage.clickNextButton();
             }
         }
 
-        List<ItemData> newList;
+        if (itemsUnderPrice.size() == 0) {
+            int yyy = 0;
+        }
 
-
-
-        if (items.size() >= count) {
-            newList = items.subList(0, count);
+        List<ItemData> itemLimitList;
+        if (itemsUnderPrice.size() >= count) {
+            itemLimitList = itemsUnderPrice.subList(0, count);
         } else {
-            newList = items;
+            itemLimitList = itemsUnderPrice;
         }
 
-        if(newList.size() == 0){
-            int yyy=0;
-        }
-
-
-        for (ItemData itemData : newList) {
+        for (ItemData itemData : itemLimitList) {
             searchResultsPage
                     .openItemInNewTab(itemData.getLink())
                     .addItemToCart()
                     .closeTab();
         }
 
-
-
         double total = searchResultsPage
                 .openCart()
                 .getCartSummary();
 
-        int y=0;
-
-//         searchResultsPage.openItemInNewTab(items.get(0).getLink()).addItemToCart();
-//         searchResultsPage.closeTab();
-//         searchResultsPage.openItemInNewTab(items.get(1).getLink()).addItemToCart();
-//         searchResultsPage.closeTab();
-
-
-
-
-//        SearchResultsPage searchResultsPage = new HomePage().searchItem("shoes");
-//        items = searchResultsPage.getItemsFromPage();
-//
-//        int count = 0;
-//        for (ItemData item : items) {
-//            if (item.getPrice() < 110) {
-//                count++;
-//                searchResultsPage.openItemInNewTab(item.getLink()).addItemToCart();
-//                searchResultsPage.closeTab();
-//                if (count > 5) {
-//                    break;
-//                }
-//            }
-//        }
-//
-//        int y = 0;
-//        double summery = searchResultsPage.openCart().getCartSummary();
-//
-//        int yd = 0;
-
-        // searchResultsPage.openItemInNewTab(items.get(0).getLink()).addItemToCart();
-        // searchResultsPage.closeTab();
-        // searchResultsPage.openItemInNewTab(items.get(1).getLink()).addItemToCart();
-        // searchResultsPage.closeTab();
+        int y = 0;
 
     }
 
-    // @Test
-    // @Description("Open home page and navigate to search")
-    // // public void shouldNotExceedBudget(TestScenario scenario)
-    // public void shouldNotExceedBudget2() {
-    // new HomePage()
-    // .open()
-    // .goToSearch();
-    // }
+    public Optional<List<String>> searchItemsByNameUnderPrice(String query, int maxPrice, int count, SearchResultsPage searchResultsPage) {
 
-    // @Test
-    // @Description("Open home page and navigate to search")
-    // // public void shouldNotExceedBudget(TestScenario scenario)
-    // public void shouldNotExceedBudget3() {
+        int numberOfPages = searchResultsPage.getNumberOfPages();
+        List<ItemData> itemsUnderPrice = new ArrayList<>();
 
-    // }
+        if (numberOfPages == 1) {
+            List<ItemData> tempFilteredItems = searchResultsPage.getItemsFromPage().stream()
+                    .filter(x -> x.getPrice() < maxPrice).toList();
+            itemsUnderPrice.addAll(tempFilteredItems);
+
+        } else {
+            for (int i = 1; i < numberOfPages; i++) {
+                if (itemsUnderPrice.size() >= count) {
+                    break;
+                }
+                List<ItemData> tempFilteredItems = searchResultsPage.getItemsFromPage().stream()
+                        .filter(x -> x.getPrice() < maxPrice).toList();
+                itemsUnderPrice.addAll(tempFilteredItems);
+                searchResultsPage.clickNextButton();
+            }
+        }
+
+        if (itemsUnderPrice.size() == 0) {
+            return Optional.empty();
+        }
+
+        List<ItemData> itemLimitList;
+        if (itemsUnderPrice.size() >= count) {
+            itemLimitList = itemsUnderPrice.subList(0, count);
+        } else {
+            itemLimitList = itemsUnderPrice;
+        }
+
+        List<String> itemsLinks = itemLimitList.stream().map(x -> x.getLink()).toList();
+        return Optional.of(itemsLinks);
+
+    }
+
+    public void addItemsToCart(List<String> itemsLinks, SearchResultsPage searchResultsPage) {
+        for (String itemLink : itemsLinks) {
+            searchResultsPage
+                    .openItemInNewTab(itemLink)
+                    .addItemToCart()
+                    .closeTab();
+        }
+    }
+
+    public void assertAmount(int budget, int count, int cartTotalPrice) {
+        int totalBudgetAllowed = budget * count;
+        Assert.assertTrue(cartTotalPrice<=totalBudgetAllowed,
+                String.format("cart total price : %s exceed the allowed total budget:%s ",cartTotalPrice,totalBudgetAllowed));
+    }
+
 }

@@ -2,7 +2,7 @@ package com.ness.automation.utils;
 
 public class Parser {
 
-    public static double parseAsDouble(String raw) {
+    public static double parseToNumber(String raw) {
         if (raw == null || raw.isBlank()) {
             return 0.0;
         }

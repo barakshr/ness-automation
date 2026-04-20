@@ -8,9 +8,9 @@ public class CartPage extends BasePage {
 
     By cartSummary = By.xpath("//*[@id='sc-subtotal-amount-activecart']/span");
 
-    public double getCartSummary() {
+    public int getCartSummary() {
         String text = getText(cartSummary);
-        return Parser.parseAsDouble(text);
+        return(int) Parser.parseToNumber(text);
     }
 
 }
