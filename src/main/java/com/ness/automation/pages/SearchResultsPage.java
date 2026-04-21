@@ -1,5 +1,11 @@
 package com.ness.automation.pages;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 import com.ness.automation.core.report.AllureAttachments;
 import com.ness.automation.pages.components.ItemData;
 import com.ness.automation.pages.components.PaginationComponent;
@@ -7,11 +13,6 @@ import com.ness.automation.pages.components.TopBarComponent;
 import com.ness.automation.utils.NumberParser;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SearchResultsPage extends BasePage {
 
@@ -34,7 +35,7 @@ public class SearchResultsPage extends BasePage {
     public List<ItemData> getItemsFromPage() {
         List<WebElement> elements;
         try {
-            elements = getElements(itemPriceLink);
+            elements = getOpration().getElements(itemPriceLink);
         } catch (Exception ignore) {
             return null;
         }
@@ -67,12 +68,9 @@ public class SearchResultsPage extends BasePage {
         return this;
     }
 
-
-
     @Step("Get number of available result pages")
     public int getNumberOfPages() {
         return paginationComponent.getNumberOfPage();
     }
-
 
 }

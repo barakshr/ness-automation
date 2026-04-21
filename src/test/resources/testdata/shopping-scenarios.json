@@ -6,6 +6,13 @@
       "query": "shoes",
       "maxPricePerItem": 220,
       "itemsCount": 2
+    },
+    {
+      "id": "pants_budget_220",
+      "description": "Search for pants under $220, add up to 5 to cart, verify total does not exceed budget",
+      "query": "pants",
+      "maxPricePerItem": 220,
+      "itemsCount": 2
     }
     
   ]

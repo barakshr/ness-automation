@@ -1,7 +1,8 @@
 package com.ness.automation.pages;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+
+import io.qameta.allure.Step;
 
 public class ItemPage extends BasePage {
 
@@ -9,7 +10,7 @@ public class ItemPage extends BasePage {
 
     @Step("Add current item to cart")
     public ItemPage addItemToCart() {
-        click(addItemToCart);
+        getOpration().click(addItemToCart);
         return this;
     }
 

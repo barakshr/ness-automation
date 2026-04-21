@@ -1,10 +1,11 @@
 package com.ness.automation.pages.components;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import com.ness.automation.pages.BasePage;
 import com.ness.automation.pages.CartPage;
+
+import io.qameta.allure.Step;
 
 public class TopBarComponent extends BasePage {
 
@@ -12,15 +13,14 @@ public class TopBarComponent extends BasePage {
     private static final By SUBMIT_BUTTON = By.id("nav-search-submit-button");
     private static final By CART_BUTTON = By.id("nav-cart-text-container");
 
-
     @Step("Enter search text: {itemName}")
     public void enterTextToSearchBox(String itemName) {
-        type(SEARCH_INPUT, itemName);
+        getOpration().type(SEARCH_INPUT, itemName);
     }
 
     @Step("Submit search")
     public void pressOnSearchButton() {
-        click(SUBMIT_BUTTON);
+        getOpration().click(SUBMIT_BUTTON);
     }
 
     @Step("Search for item from top bar: {itemName}")
@@ -31,11 +31,8 @@ public class TopBarComponent extends BasePage {
 
     @Step("Open cart from top bar")
     public CartPage openCart() {
-        click(CART_BUTTON);
+        getOpration().click(CART_BUTTON);
         return new CartPage();
     }
-
-
-
 
 }

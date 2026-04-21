@@ -11,7 +11,7 @@ import com.ness.automation.testng.listeners.TestListener;
 @Listeners({ DriverLifecycleListener.class, ScenarioDisplayNameListener.class, TestListener.class })
 public abstract class BaseTest {
 
-    @DataProvider(name = "scenarios", parallel = false)
+    @DataProvider(name = "scenarios", parallel = true)
     public static Object[][] scenarios() {
         return DataReader.loadScenarios().stream().map(s -> new Object[] { s }).toArray(Object[][]::new);
     }
