@@ -10,7 +10,7 @@ It  contain:  Data driven file, Object-Oriented Programming, Page object model
 
     Each one  is a different test case.
 
-    And they will all be executed in a single run test suite run 
+    And they will all be executed in a single test suite run 
 
 2. if you have  more  then a single test case in the file , then whey will run in parallel (maximum threads is 3) in the same run. 
 
