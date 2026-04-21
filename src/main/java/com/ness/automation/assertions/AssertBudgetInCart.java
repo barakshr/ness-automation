@@ -8,13 +8,15 @@ import io.qameta.allure.Step;
 public class AssertBudgetInCart {
 
     @Step("Assert budget in cart")
-    public static void assertCartTotalNotExceeds(int budget, int count, Integer cartTotalPrice) {
-
+    public static void assertCartTotalNotExceeds(int budget, int count, Integer cartTotalPrice , int numberofItemsInCart) {
         if (cartTotalPrice == null) {
             Allure.step("No items added to cart");
             return;
         }
         int totalBudgetAllowed = budget * count;
+        Allure.step("number of items in cart: " + numberofItemsInCart);
+        Allure.step("cart total price: " + cartTotalPrice);
+        Allure.step("total budget allowed: " + totalBudgetAllowed);
         Assert.assertTrue(cartTotalPrice <= totalBudgetAllowed,
                 String.format("cart total price : %s exceed the allowed total budget:%s ", cartTotalPrice,
                         totalBudgetAllowed));

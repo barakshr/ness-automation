@@ -32,12 +32,14 @@ public class ShoppingTest extends BaseTest {
         Optional<List<String>> itemsLinks = SearchWorkFlowScenarios.searchItemsByNameUnderPrice(query, maxPrice, count,
                 searchResultsPage);
         Integer cartTotalPrice = null;
+        int numberofItemsInCart = 0;
         if (itemsLinks.isPresent()) {
+             numberofItemsInCart = itemsLinks.get().size();
             ItemsWorkFlows.addItemsToCart(itemsLinks.get(), searchResultsPage);
             cartTotalPrice = searchResultsPage.openCart().getCartSummary();
         }
 
-        AssertBudgetInCart.assertCartTotalNotExceeds(maxPrice, count, cartTotalPrice);
+        AssertBudgetInCart.assertCartTotalNotExceeds(maxPrice, count, cartTotalPrice, numberofItemsInCart);
     }
 
 }

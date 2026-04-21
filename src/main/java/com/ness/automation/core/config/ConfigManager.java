@@ -32,7 +32,6 @@ public final class ConfigManager {
     public static final int TIMEOUT_IMPLICIT;
     public static final int TIMEOUT_EXPLICIT;
     public static final int TIMEOUT_PAGE_LOAD;
-    public static final int TIMEOUT_MANUAL_INTERVENTION;
 
     // ─── Reporting ───
     public static final String REPORT_ALLURE_RESULTS_DIR;
@@ -55,7 +54,6 @@ public final class ConfigManager {
         TIMEOUT_IMPLICIT            = Integer.parseInt(required(props, "timeout.implicit"));
         TIMEOUT_EXPLICIT            = Integer.parseInt(required(props, "timeout.explicit"));
         TIMEOUT_PAGE_LOAD           = Integer.parseInt(required(props, "timeout.page.load"));
-        TIMEOUT_MANUAL_INTERVENTION = Integer.parseInt(required(props, "timeout.manual.intervention"));
 
         REPORT_ALLURE_RESULTS_DIR   = optional(props, "report.allure.results.dir", "allure-results");
         SCREENSHOT_ON_FAILURE       = Boolean.parseBoolean(required(props, "screenshot.on.failure"));
