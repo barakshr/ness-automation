@@ -1,8 +1,9 @@
 # Ness Amazon Automation 
 
 ## Project 
-This is a Java Maven project with TestNg framework for testing ,Selenium for UI operations, And allure as report
-It has Data driven file, OOP ,POM 
+This is a Java Maven project with TestNg framework for testing ,Selenium for UI operations, And allure as report.
+
+It has uses:  Data driven file, Object-Oriented Programming, Page object model 
 
 1.  in the data driven file "shopping-scenarios.json"  you can add more JSON blocks to the list
     Each one  is a different test case.
