@@ -5,10 +5,9 @@ import org.testng.annotations.Listeners;
 
 import com.ness.automation.core.DataReader;
 import com.ness.automation.testng.listeners.DriverLifecycleListener;
-import com.ness.automation.testng.listeners.ScenarioDisplayNameListener;
 import com.ness.automation.testng.listeners.TestListener;
 
-@Listeners({ DriverLifecycleListener.class, ScenarioDisplayNameListener.class, TestListener.class })
+@Listeners({ DriverLifecycleListener.class, TestListener.class })
 public abstract class BaseTest {
 
     @DataProvider(name = "scenarios", parallel = true)
