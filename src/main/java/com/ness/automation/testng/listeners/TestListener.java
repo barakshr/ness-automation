@@ -14,21 +14,29 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        log.info("▶ Starting test: {}", result.getName());
+        log.info("▶ Starting test: {}", displayName(result));
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        log.info("✔ Passed: {}", result.getName());
+        log.info("✔ Passed: {}", displayName(result));
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        log.error("✘ Failed: {}", result.getName());
+        log.error("✘ Failed: {}", displayName(result));
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        log.warn("⚠ Skipped: {}", result.getName());
+        log.warn("⚠ Skipped: {}", displayName(result));
+    }
+
+    private static String displayName(ITestResult result) {
+        String custom = result.getTestName();
+        if (custom != null && !custom.isEmpty()) {
+            return custom;
+        }
+        return result.getName();
     }
 }

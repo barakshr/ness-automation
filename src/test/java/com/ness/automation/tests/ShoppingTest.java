@@ -3,7 +3,6 @@ package com.ness.automation.tests;
 import java.util.List;
 import java.util.Optional;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.ness.automation.assertions.AssertBudgetInCart;
