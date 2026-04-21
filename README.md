@@ -27,7 +27,7 @@ It  contain:  Data driven file, Object-Oriented Programming, Page object model
 
 
 2. The Ecommerce site is Amazon.  
-   I didnt filter the results with the amazon price filter because  sometimes it doesn't appear in the search results window
+   I didnt filter the results with the amazon price filter because  sometimes it doesn't appear in the search  window
 
 
 3. In section 4.1 of the assignment, you requested to use xpath in order to extract the items with a price lower then the max  
