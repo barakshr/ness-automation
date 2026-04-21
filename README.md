@@ -1,8 +1,7 @@
 # Ness Amazon Automation 
 
 ## Project 
-This is a Java Maven project with TestNg framework for testing ,Selenium for UI operations, And allure as report.
-
+This is a Java Maven project with TestNg framework for testing ,Selenium for UI operations, And allure as report.  
 It  contain:  Data driven file, Object-Oriented Programming, Page object model 
 
 
@@ -25,7 +24,7 @@ It  contain:  Data driven file, Object-Oriented Programming, Page object model
    So if you run the  test suite a second time , you will need to close the report process and reopen it  
 
 
-5. There are screen shots in the report, you need to drill down the tree of report logs to see them (that's how allure build it)
+5. There are screen shots in the report, you need to drill down the tree of report logs to see them (that's how allure do it)
 
 
 
@@ -36,7 +35,7 @@ It  contain:  Data driven file, Object-Oriented Programming, Page object model
 
 2. The Ecommerce site is Amazon.
 
-   I didnt filter the results with the amazon price filter because  sometimes it doesn't appear in the search results there
+   I didnt filter the results with the amazon price filter because  sometimes it doesn't appear in the search results window
 
 
 3. In section 4.1 of the assignment, you requested to use xpath in order to extract the items with a price lower then the max 
@@ -135,9 +134,6 @@ src/test/resources/
 └── testdata/
     └── shopping-scenarios.json
 ```
-
-
-## Project Extrenal
 
 
 
