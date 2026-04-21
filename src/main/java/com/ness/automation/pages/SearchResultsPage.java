@@ -52,7 +52,6 @@ public class SearchResultsPage extends BasePage {
 
     @Step("Open item in new tab: {link}")
     public ItemPage openItemInNewTab(String link) {
-        AllureAttachments.screenshot(getDriver(), "Open item in new tab: " + link);
         return openNewTabAndReturn(ItemPage.class, link);
     }
 
