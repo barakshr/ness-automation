@@ -10,7 +10,7 @@ import com.ness.automation.core.report.AllureAttachments;
 import com.ness.automation.pages.components.ItemData;
 import com.ness.automation.pages.components.PaginationComponent;
 import com.ness.automation.pages.components.TopBarComponent;
-import com.ness.automation.utils.NumberParser;
+import com.ness.automation.utils.generalUtils.NumberParser;
 
 import io.qameta.allure.Step;
 

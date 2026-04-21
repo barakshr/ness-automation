@@ -2,7 +2,7 @@ package com.ness.automation.pages;
 
 import org.openqa.selenium.By;
 
-import com.ness.automation.utils.NumberParser;
+import com.ness.automation.utils.generalUtils.NumberParser;
 
 import io.qameta.allure.Step;
 

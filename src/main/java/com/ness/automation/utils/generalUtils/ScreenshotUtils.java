@@ -1,4 +1,4 @@
-package com.ness.automation.utils;
+package com.ness.automation.utils.generalUtils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

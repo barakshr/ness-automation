@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.ness.automation.core.driver.DriverManager;
 import com.ness.automation.pages.BasePage;
-import com.ness.automation.utils.NumberParser;
+import com.ness.automation.utils.generalUtils.NumberParser;
 
 import io.qameta.allure.Step;
 

@@ -1,4 +1,4 @@
-package com.ness.automation.utils;
+package com.ness.automation.utils.generalUtils;
 
 public class NumberParser {
 

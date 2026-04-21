@@ -3,7 +3,7 @@ package com.ness.automation.core.report;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.WebDriver;
 
-import com.ness.automation.utils.ScreenshotUtils;
+import com.ness.automation.utils.generalUtils.ScreenshotUtils;
 
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
