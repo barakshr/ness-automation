@@ -40,23 +40,52 @@ Alternative: `mvn allure:report` generates static HTML under `target/site/allure
 
 ```
 src/main/java/com/ness/automation/
+├── assertions/
+│   └── AssertBudgetInCart.java
 ├── core/
-│   ├── config/ConfigManager.java     ← immutable static config
-│   └── driver/
-│       ├── BrowserFactory.java       ← builds a WebDriver
-│       └── DriverManager.java        ← ThreadLocal lifecycle
-└── pages/
-    ├── BasePage.java                 ← driver pulled from DriverManager
-    └── HomePage.java                 ← open(), clickSearchBox()
+│   ├── config/ConfigManager.java
+│   ├── driver/
+│   │   ├── BrowserFactory.java
+│   │   └── DriverManager.java
+│   ├── report/AllureAttachments.java
+│   └── DataReader.java
+├── models/
+│   ├── TestDataFile.java
+│   └── TestScenario.java
+├── pages/
+│   ├── BasePage.java
+│   ├── HomePage.java
+│   ├── SearchResultsPage.java
+│   ├── ItemPage.java
+│   ├── CartPage.java
+│   └── components/
+│       ├── TopBarComponent.java
+│       ├── PaginationComponent.java
+│       └── ItemData.java
+├── testng/listeners/
+│   ├── DriverLifecycleListener.java
+│   └── TestListener.java
+├── utils/
+│   ├── generalUtils/
+│   │   ├── NumberParser.java
+│   │   └── ScreenshotUtils.java
+│   └── seleniumUtils/
+│       ├── SeleniumOprationsUtil.java
+│       └── SeleniumWaitUtil.java
+└── workflows/
+    ├── SearchWorkFlowScenarios.java
+    └── ItemsWorkFlows.java
 
 src/test/java/com/ness/automation/
-├── base/BaseTest.java                ← driver lifecycle only
-└── tests/SmokeTest.java              ← the one test
+├── base/BaseTest.java
+└── tests/ShoppingTest.java
 
 src/test/resources/
-├── config.properties                 ← all runtime settings
-├── log4j2.xml                        ← logging
-└── testng.xml                        ← suite
+├── config.properties
+├── log4j2.xml
+├── testng.xml
+└── testdata/
+    └── shopping-scenarios.json
 ```
 
 ## Configuration
