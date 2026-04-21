@@ -33,6 +33,7 @@ It  contain:  Data driven file, Object-Oriented Programming, Page object model
 3. In section 4.1 of the assignment, you requested to use xpath in order to extract the items with a price lower then the max  
    Unfortunately i only saw this after i already implemented a different way to filter the prices and extract the items 
 
+4. I notices some flakiness in the run sometimes, but it doesn't happen to often  
 
 
 ## Prerequisites
