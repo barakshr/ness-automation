@@ -27,7 +27,7 @@ mvn allure:serve
 path:  `src/test/resources/config.properties`:
 ```
 
-#Data Driven Json path
+##Data Driven Json path
 ```bash
 path:  `src/test/resources/testdata/shopping-scenarios.json`:
 ```
