@@ -1,4 +1,4 @@
-package com.ness.automation.pages.PageUtils;
+package com.ness.automation.pages.seleniumUtils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

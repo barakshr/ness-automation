@@ -11,8 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.ness.automation.core.config.ConfigManager;
 import com.ness.automation.core.driver.DriverManager;
-import com.ness.automation.pages.PageUtils.SeleniumOprationsUtil;
-import com.ness.automation.pages.PageUtils.SeleniumWaitUtil;
+import com.ness.automation.pages.seleniumUtils.SeleniumOprationsUtil;
+import com.ness.automation.pages.seleniumUtils.SeleniumWaitUtil;
 
 /**
  * Parent of every concrete page object.
