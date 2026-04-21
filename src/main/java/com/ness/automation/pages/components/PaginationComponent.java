@@ -12,10 +12,10 @@ import io.qameta.allure.Step;
 public class PaginationComponent extends BasePage {
 
     By lastPageButton = By.xpath(
-            "//*[@class='s-pagination-item s-pagination-next s-pagination-button s-pagination-button-accessibility s-pagination-separator']/parent::*/parent::*/preceding-sibling::*[1]");
+            "//*[contains(@class,'s-pagination-next')]/ancestor::li/preceding-sibling::*[1]");
 
     By nextButton = By.xpath(
-            "//*[@class='s-pagination-item s-pagination-next s-pagination-button s-pagination-button-accessibility s-pagination-separator']");
+            "//*[contains(@class,'s-pagination-next')]");
     protected final WebDriver driver;
 
     @Step("Read number of pagination pages")

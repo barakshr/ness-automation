@@ -21,20 +21,19 @@ import io.qameta.allure.Feature;
 @Feature("Shopping flow")
 public class ShoppingTest extends BaseTest {
 
-
     @Test(dataProvider = "scenarios")
     @Description("Open home page and navigate to search")
     public void shouldNotExceedBudget(TestScenario scenario) {
         int count = scenario.getItemsCount();
         int maxPrice = scenario.getMaxPricePerItem();
         String query = scenario.getQuery();
-        SearchResultsPage searchResultsPage = new HomePage().searchItem(scenario.getQuery());
-        Optional<List<String>> itemsLinks = SearchWorkFlowScenarios.searchItemsByNameUnderPrice(query, maxPrice, count,
+        SearchResultsPage searchResultsPage = new HomePage().searchItem(query);
+        Optional<List<String>> itemsLinks = SearchWorkFlowScenarios.searchItemsByNameUnderPrice(maxPrice, count,
                 searchResultsPage);
         Integer cartTotalPrice = null;
         int numberofItemsInCart = 0;
         if (itemsLinks.isPresent()) {
-             numberofItemsInCart = itemsLinks.get().size();
+            numberofItemsInCart = itemsLinks.get().size();
             ItemsWorkFlows.addItemsToCart(itemsLinks.get(), searchResultsPage);
             cartTotalPrice = searchResultsPage.openCart().getCartSummary();
         }

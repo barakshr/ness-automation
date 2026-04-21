@@ -6,7 +6,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.ness.automation.pages.components.ItemData;
+import com.ness.automation.models.ItemData;
 import com.ness.automation.pages.components.PaginationComponent;
 import com.ness.automation.pages.components.TopBarComponent;
 import com.ness.automation.utils.generalUtils.NumberParser;
@@ -36,7 +36,8 @@ public class SearchResultsPage extends BasePage {
         try {
             elements = getOpration().getElements(itemPriceLink);
         } catch (Exception ignore) {
-            return null;
+            log.error("No items found on the page");
+            return new ArrayList<>();
         }
         List<ItemData> itemDataList = new ArrayList<>();
         for (WebElement webElement : elements) {

@@ -4,15 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Optional;
+
+import com.ness.automation.models.ItemData;
 import com.ness.automation.pages.SearchResultsPage;
-import com.ness.automation.pages.components.ItemData;
+
 import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 
 public class SearchWorkFlowScenarios {
 
     @Step("Find up to {count} items under price {maxPrice} for query: {query}")
-    public static Optional<List<String>> searchItemsByNameUnderPrice(String query, int maxPrice, int count, SearchResultsPage searchResultsPage) {
+    public static Optional<List<String>> searchItemsByNameUnderPrice( int maxPrice, int count, SearchResultsPage searchResultsPage) {
 
         int numberOfPages = searchResultsPage.getNumberOfPages();
         List<ItemData> itemsUnderPrice = new ArrayList<>();

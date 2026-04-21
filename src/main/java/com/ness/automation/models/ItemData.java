@@ -1,4 +1,4 @@
-package com.ness.automation.pages.components;
+package com.ness.automation.models;
 
 public class ItemData {
 
@@ -9,7 +9,6 @@ public class ItemData {
         this.link = link;
         this.price = price;
     }
-
 
     public String getLink() {
         return link;
